@@ -1,0 +1,19 @@
+{
+  "devDependencies": {
+    "@types/node": "^20.6.0",
+    "tsx": "^3.12.9",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "fastify": "^4.23.0"
+  },
+  "name": "upload-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
