@@ -24,8 +24,8 @@ export async function uploadVideoPost(app: FastifyInstance) {
         return reply.status(400).send({error: 'Nenhum arquivo encontrado.'})
       }
 
+      //Pegando extensão de arquivo
       const extension = path.extname(data.filename)
-
       if(extension !== '.mp3'){
         return reply.status(400).send({error: 'Tipo inválido de arquivo.'})
       }
@@ -34,8 +34,19 @@ export async function uploadVideoPost(app: FastifyInstance) {
       const fileUploadName = `${fileBaseName}-${randomUUID()}${extension}`
 
       //Config para salvar arquivos localmente
-      const uploadDestination = path.resolve(__dirname, '../../tmp', fileUploadName)
+      const uploadDestination = path.resolve(__dirname, '../../temp', fileUploadName)
       await pump(data.file, fs.createWriteStream(uploadDestination))
 
+      //Registrando vídeo no bd
+      const video = await prisma.video.create({
+        data:{
+          name: data.filename,
+          path: uploadDestination,
+        }
+      })
+
+      return(
+        video
+      )
   });
 }
