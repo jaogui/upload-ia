@@ -45,7 +45,7 @@ export async function createTranscriptionRoute(app: FastifyInstance) {
         id: videoId,
       },
       data:{
-        transcription: response.text,
+        transcription,
       },
     })
     return {transcription}
