@@ -12,6 +12,8 @@ import {
   SelectValue,
 } from "../ui/select";
 import { Slider } from "../ui/slider";
+import { getFFmpeg } from "../../lib/ffmpeg";
+import { fetchFile } from "@ffmpeg/util";
 
 export function Aside() {
   const [videoFile, setVideoFile] = useState<File | null>(null);
@@ -36,8 +38,42 @@ export function Aside() {
     return URL.createObjectURL(videoFile);
   }, [videoFile]);
 
+
+  //Convert vídeo em audio
+  async function convertVideoToAudio(video: File){
+    console.log('convert Init')
+    const ffmpeg = await getFFmpeg()
+    await ffmpeg.writeFile('input.mp4', await fetchFile(video))
+
+    // ffmpeg.on('log', log =>{
+    //   console.log(log)
+    // })
+
+    ffmpeg.on('progress', progress => {
+      console.log('Progress Convert:' + Math.round(progress.progress * 100))
+    })
+
+    await ffmpeg.exec([
+      '-i',
+      'input.mp4',
+      '-map',
+      '0:a',
+      '-b:a',
+      '20k',
+      '-acodec',
+      'libmp3lame',
+      'output.mp3',
+    ])
+
+    const data = await ffmpeg.readFile('output.mp3')
+    const audioFileBlob = new Blob([data], {type: 'audio/mpeg'})
+    const audioFile = new File([audioFileBlob], 'audio.mp3', {type: 'audio-mpeg'})
+    console.log('convert finish')
+    return audioFile
+  }
+
   //Handle upload vídeo - Onsubmit form
-  function handleUploadVideo(event: FormEvent<HTMLFormElement>) {
+  async function handleUploadVideo(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     //Valor do vídeo
@@ -47,7 +83,11 @@ export function Aside() {
       return
     }
 
-    //
+
+    //Chamada p/ conversão de vídeo em MP3
+    const audioFile = await convertVideoToAudio(videoFile)
+ 
+    console.log(audioFile, prompt)
   }
 
   return (
