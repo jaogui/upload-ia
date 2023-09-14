@@ -1,4 +1,4 @@
-import { ChangeEvent, useMemo, useState } from "react";
+import { ChangeEvent, useMemo, useState, FormEvent, useRef } from "react";
 import { VideoIcon, UploadIcon, MagicWandIcon } from "@radix-ui/react-icons";
 import { Separator } from "../ui/separator";
 import { Label } from "../ui/label";
@@ -15,7 +15,9 @@ import { Slider } from "../ui/slider";
 
 export function Aside() {
   const [videoFile, setVideoFile] = useState<File | null>(null);
+  const promptInputRef = useRef<HTMLTextAreaElement>(null);
 
+  //Select vídeo
   function handleFileSelected(event: ChangeEvent<HTMLInputElement>) {
     const { files } = event.currentTarget;
 
@@ -26,22 +28,41 @@ export function Aside() {
     setVideoFile(selectedFile);
   }
 
-  const previewURL = useMemo(()=>{
-    if(!videoFile) {
-      return null
+  //Preview vídeo
+  const previewURL = useMemo(() => {
+    if (!videoFile) {
+      return null;
     }
     return URL.createObjectURL(videoFile);
-  },[videoFile])
+  }, [videoFile]);
+
+  //Handle upload vídeo - Onsubmit form
+  function handleUploadVideo(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    //Valor do vídeo
+    const prompt = promptInputRef.current?.value
+
+    if(!videoFile){
+      return
+    }
+
+    //
+  }
 
   return (
     <aside className="w-80 space-y-6">
-      <form className="space-y-6">
+      <form onSubmit={handleUploadVideo} className="space-y-6">
         <label
           htmlFor="video"
           className="relative border w-full flex rounded-md aspect-video cursor-pointer text-sm flex-col items-center gap-2 justify-center text-muted-foreground hover:bg-primary/5"
         >
           {previewURL ? (
-            <video src={previewURL} controls={false} className="pointer-events-none absolute inset-0" />
+            <video
+              src={previewURL}
+              controls={false}
+              className="pointer-events-none absolute inset-0"
+            />
           ) : (
             <>
               Carregue o video
@@ -60,6 +81,7 @@ export function Aside() {
         <div className="space-y-2">
           <Label htmlFor="transcription_prompt">Prompt de transcrição</Label>
           <Textarea
+            ref={promptInputRef}
             id="transcription_prompt"
             className="min-h-28 leading-relaxed resize-none"
             placeholder="Inclua as chaves mencionadas no vídeo."
