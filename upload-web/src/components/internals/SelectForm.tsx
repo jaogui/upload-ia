@@ -1,3 +1,4 @@
+import { useState} from 'react'
 import { Label } from "../ui/label";
 import { MagicWandIcon } from "@radix-ui/react-icons";
 import { Button } from "../ui/button";
@@ -14,6 +15,8 @@ import {
 
 
 export function SelectForm() {
+  const [temperature, setTemperature] = useState(0.5)
+
 
   function handlePromptSelected(template: string){
     console.log(template)
@@ -45,7 +48,8 @@ export function SelectForm() {
     <Separator />
     <div className="space-y-2">
       <Label>Temperatura</Label>
-      <Slider min={0} max={1} step={0.1} />
+      <Slider min={0} max={1} step={0.1}  value={[temperature]}
+        onValueChange={value => setTemperature(value[0])} />
       <p className="text-sm text-muted-foreground italic leading-relaxed">
         Valores mais altos maior criatividade.
       </p>
