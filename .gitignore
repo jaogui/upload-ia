@@ -2,4 +2,5 @@
 *.env
 *temp
 *.mp3
+seed.ts
 routes.http

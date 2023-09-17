@@ -6,6 +6,9 @@
     "tsx": "^3.12.9",
     "typescript": "^5.2.2"
   },
+  "prisma":{
+    "seed": "tsx prisma/seed.ts"
+  },
   "dependencies": {
     "@fastify/cors": "^8.3.0",
     "@fastify/multipart": "^7.7.3",
