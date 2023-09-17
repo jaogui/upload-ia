@@ -1,5 +1,5 @@
 import { Separator } from "../ui/separator";
-import PromptSelectForm from "./PromptSelectForm";
+import { SelectForm } from "./SelectForm";
 import { VideoInputForm } from "./VideoInputForm";
 
 export function Aside() {
@@ -7,7 +7,7 @@ export function Aside() {
     <aside className="w-80 space-y-6">
       <VideoInputForm />
       <Separator />
-      <PromptSelectForm />
+      <SelectForm/>
     </aside>
   );
 }

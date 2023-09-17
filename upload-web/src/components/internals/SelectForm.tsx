@@ -3,6 +3,7 @@ import { MagicWandIcon } from "@radix-ui/react-icons";
 import { Button } from "../ui/button";
 import { Slider } from "../ui/slider";
 import { Separator } from "../ui/separator";
+import { PromptSelect } from "./PromptSelect";
 import {
   Select,
   SelectContent,
@@ -11,22 +12,13 @@ import {
   SelectValue,
 } from "../ui/select";
 
-function PromptSelectForm() {
+
+export function SelectForm() {
   return (
     <form className="space-y-6">
     <div className="space-y-2">
       <Label>Prompt</Label>
-      <Select>
-        <SelectTrigger>
-          <SelectValue placeholder="Selecione um prompt..." />
-          <SelectContent>
-            <SelectItem value="title">Titulo do youtube</SelectItem>
-            <SelectItem value="description">
-              Descrição do youtube
-            </SelectItem>
-          </SelectContent>
-        </SelectTrigger>
-      </Select>
+      <PromptSelect />
       <span className="text-sm text-muted-foreground italic">
         Talvez você consiga alterar essa opção em breve.
       </span>
@@ -62,4 +54,3 @@ function PromptSelectForm() {
   )
 }
 
-export default PromptSelectForm
