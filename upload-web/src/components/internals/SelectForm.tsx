@@ -14,11 +14,16 @@ import {
 
 
 export function SelectForm() {
+
+  function handlePromptSelected(template: string){
+    console.log(template)
+  }
+
   return (
     <form className="space-y-6">
     <div className="space-y-2">
       <Label>Prompt</Label>
-      <PromptSelect />
+      <PromptSelect onPromptSelected={handlePromptSelected} />
       <span className="text-sm text-muted-foreground italic">
         Talvez você consiga alterar essa opção em breve.
       </span>
