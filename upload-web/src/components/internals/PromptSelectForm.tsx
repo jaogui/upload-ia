@@ -1,0 +1,65 @@
+import { Label } from "../ui/label";
+import { MagicWandIcon } from "@radix-ui/react-icons";
+import { Button } from "../ui/button";
+import { Slider } from "../ui/slider";
+import { Separator } from "../ui/separator";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
+
+function PromptSelectForm() {
+  return (
+    <form className="space-y-6">
+    <div className="space-y-2">
+      <Label>Prompt</Label>
+      <Select>
+        <SelectTrigger>
+          <SelectValue placeholder="Selecione um prompt..." />
+          <SelectContent>
+            <SelectItem value="title">Titulo do youtube</SelectItem>
+            <SelectItem value="description">
+              Descrição do youtube
+            </SelectItem>
+          </SelectContent>
+        </SelectTrigger>
+      </Select>
+      <span className="text-sm text-muted-foreground italic">
+        Talvez você consiga alterar essa opção em breve.
+      </span>
+    </div>
+    <div className="space-y-2">
+      <Label>Modelo</Label>
+      <Select defaultValue="gpt3.5" disabled>
+        <SelectTrigger>
+          <SelectValue />
+          <SelectContent>
+            <SelectItem value="gpt3.5">GPT 3.5-turbo 16k</SelectItem>
+          </SelectContent>
+        </SelectTrigger>
+      </Select>
+      <span className="text-sm text-muted-foreground italic">
+        Talvez você consiga alterar essa opção em breve.
+      </span>
+    </div>
+    <Separator />
+    <div className="space-y-2">
+      <Label>Temperatura</Label>
+      <Slider min={0} max={1} step={0.1} />
+      <p className="text-sm text-muted-foreground italic leading-relaxed">
+        Valores mais altos maior criatividade.
+      </p>
+      <Separator />
+      <Button type="submit" className="w-full bg-zinc-800 flex gap-2">
+        Executar
+        <MagicWandIcon className="w-4 h-4" />
+      </Button>
+    </div>
+  </form>
+  )
+}
+
+export default PromptSelectForm
