@@ -9,12 +9,19 @@ Selecione um vídeo para que ia gere um título ou uma descrição com base no v
 npm install
 ```
 <br>
-<p>Executando aplicação</p>
+<p>Executando aplicação no server <b>/upload-server</b></p>
 
 ```bash
 npm run dev
 ```
+<p>Executando aplicação na web <b>/upload-web</b></p>
+
+```bash
+npm run dev
+```
+<br>
+
 Acesso
 ```bash
-http://localhost:5173/
+http://localhost:5173
 ```
