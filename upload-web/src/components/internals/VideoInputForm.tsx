@@ -148,7 +148,7 @@ export function VideoInputForm(props: VideoInputFormProps) {
           ref={promptInputRef}
           id="transcription_prompt"
           className="min-h-28 leading-relaxed resize-none"
-          placeholder="Inclua as chaves mencionadas no vídeo."
+          placeholder="Você pode informar palavras chaves do vídeo.."
           disabled={status !== "waiting"}
         />
         <Button

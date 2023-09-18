@@ -51,13 +51,10 @@ export function App() {
             <>
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="space-y-2">
-                  <Label>Prompt</Label>
+                  <Label>Oque gerar ?</Label>
                   <PromptSelect onPromptSelected={setInput} />
-                  <span className="text-sm text-muted-foreground italic">
-                    Talvez você consiga alterar essa opção em breve.
-                  </span>
                 </div>
-                <div className="space-y-2">
+                {/* <div className="space-y-2">
                   <Label>Modelo</Label>
                   <Select defaultValue="gpt3.5" disabled>
                     <SelectTrigger>
@@ -72,7 +69,7 @@ export function App() {
                   <span className="text-sm text-muted-foreground italic">
                     Talvez você consiga alterar essa opção em breve.
                   </span>
-                </div>
+                </div> */}
                 <Separator />
                 <div className="space-y-2">
                   <Label>Temperatura</Label>
@@ -84,9 +81,8 @@ export function App() {
                     onValueChange={(value) => setTemperature(value[0])}
                   />
                   <p className="text-sm text-muted-foreground italic leading-relaxed">
-                    Valores mais altos maior criatividade.
+                    Especifique o valor de criatividade.
                   </p>
-                  <Separator />
                   <Button
                     disabled={isLoading}
                     type="submit"
@@ -102,23 +98,23 @@ export function App() {
           <div className="flex flex-col flex-1 gap-4">
             <div className="grid grid-rows-2 gap-4 flex-1">
               <Textarea
-                placeholder="Inclua o prompt"
+                placeholder="Se preferir inclua informações ou solicitações.."
                 className="resize-none p-4 leading-relaxed"
                 value={input}
                 onChange={handleInputChange}
               />
               <Textarea
-                placeholder="Resultado gerado pela IA.."
+                placeholder="Resultado IA.."
                 className=" resize-none p-4 leading-relaxed"
                 readOnly
                 value={completion}
               />
             </div>
-            <p className="text-sm text-muted-foreground">
+            {/* <p className="text-sm text-muted-foreground">
               Lembre-se: você pode utilizar a variável{" "}
               <code className="text-green-600">{"{transcription}"}</code> no seu
               propmpt para adicionar o conteúdo da transcrição do vídeo
-            </p>
+            </p> */}
           </div>
         </main>
       </div>
