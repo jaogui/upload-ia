@@ -14,9 +14,9 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-  completion,
 } from "./components/ui/select";
 import { useCompletion } from "ai/react";
+
 export function App() {
   const [videoId, setVideoId] = useState<string | null>(null);
   const [temperature, setTemperature] = useState(0.5);
