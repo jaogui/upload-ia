@@ -39,6 +39,8 @@ export function VideoInputForm(props: VideoInputFormProps) {
     }
     const selectedFile = files[0];
     setVideoFile(selectedFile);
+    console.log(selectedFile)
+    console.log('video file', videoFile)
   }
 
   //Preview vídeo
@@ -46,6 +48,7 @@ export function VideoInputForm(props: VideoInputFormProps) {
     if (!videoFile) {
       return null;
     }
+    setStatus('waiting');
     return URL.createObjectURL(videoFile);
   }, [videoFile]);
 
@@ -90,8 +93,6 @@ export function VideoInputForm(props: VideoInputFormProps) {
 
     //Text prompt(palavras-chaves)
     const prompt = promptInputRef.current?.value;
-    console.log(prompt);
-
     if (!videoFile) {
       return;
     }
