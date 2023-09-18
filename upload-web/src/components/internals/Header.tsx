@@ -11,7 +11,7 @@ export function Header() {
     </span>
     <div className="flex items-center gap-3">
       <span className="text-sm text-muted-foreground">
-        Gerador de títulos e descrições para vídeos.
+        Gerador de conteúdos para vídeos e sobre vídeos
       </span>
       <Separator orientation="vertical" className="h-5" />
       <a href='https://github.com/jaogui/upload-ia' target='_blank' className='border p-2 shadow-sm rounded-full'>

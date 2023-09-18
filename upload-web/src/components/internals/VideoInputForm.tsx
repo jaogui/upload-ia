@@ -62,6 +62,7 @@ export function VideoInputForm(props: VideoInputFormProps) {
     //   console.log(log)
     // })
 
+    //Config ffmmpeg p/ conversão
     ffmpeg.on("progress", (progress) => {
       console.log("Progress Convert:" + Math.round(progress.progress * 100));
     });
@@ -129,7 +130,7 @@ export function VideoInputForm(props: VideoInputFormProps) {
           />
         ) : (
           <>
-            Carregue o video
+            Selecionar vídeo
             <VideoIcon />
           </>
         )}
